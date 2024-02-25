@@ -16,6 +16,24 @@ public class Board {
 		this.grid = new char[rowSize][colSize];	
 	}
 	
+	public void initializeBoard() {
+		int k = 1;
+		for(int i=0;i <this.rowSize;i++) {
+			for(int j=0;j<this.colSize;j++) {
+				this.grid[i][j] = (char)k;
+				k += 1;
+			}
+		}
+	}
+	public void displayBoard() {
+		for(int i=0;i <this.rowSize;i++) {
+			for(int j=0;j<this.colSize;j++) {
+				System.out.printf("%d ", this.grid[i][j]);
+			}
+			System.out.println();
+		}
+	}
+	
 	public void setCell(int cellNumber) {
 		int row = (cellNumber - 1)% 5;
 		int col = (cellNumber - 1)/5;
@@ -27,6 +45,7 @@ public class Board {
 		int col = (cellNumber - 1)/5;
 		return this.grid[row][col];
 	}
+	
 	public void setClues() {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Enter the row wise clues :");
