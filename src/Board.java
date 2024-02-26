@@ -28,26 +28,25 @@ public class Board {
 	public void displayBoard() {
 		for(int i=0;i <this.rowSize;i++) {
 			for(int j=0;j<this.colSize;j++) {
-				System.out.printf("%d ", this.grid[i][j]);
+				System.out.printf("%c ", this.grid[i][j]);
 			}
 			System.out.println();
 		}
 	}
 	
 	public void setCell(int cellNumber) {
-		int row = (cellNumber - 1)% 5;
-		int col = (cellNumber - 1)/5;
+		int row = (cellNumber - 1)% this.rowSize;
+		int col = (cellNumber - 1)/this.rowSize;
 		this.grid[row][col] = 'b';
 	}
 	
 	public char getCell(int cellNumber) {
-		int row = (cellNumber - 1)% 5;
-		int col = (cellNumber - 1)/5;
+		int row = (cellNumber - 1)% this.rowSize;
+		int col = (cellNumber - 1)/this.rowSize;
 		return this.grid[row][col];
 	}
 	
-	public void setClues() {
-		Scanner scanner = new Scanner(System.in);
+	public void setClues(Scanner scanner) {
 		System.out.println("Enter the row wise clues :");
 		for(int i=0;i<rowSize;i++) {
 			System.out.printf("Rule no %d:\n", i+1);
@@ -56,12 +55,14 @@ public class Board {
 			while(flag) {
 				n = scanner.nextInt();
 				currentSublist.add(n);
+				System.out.println("press 1 to enter any more clues for this row. Else, press any other number ");
+				int choice = scanner.nextInt();
+				if(choice != 1) {
+					flag = false;
+				}
 			}
 			rowClues.add(currentSublist);
-			scanner.close();
-			
 		}
-		
 		System.out.println("Enter the column wise clues :");
 		for(int i=0;i<colSize;i++) {
 			System.out.printf("Rule no %d:\n", i+1);
@@ -70,12 +71,17 @@ public class Board {
 			while(flag) {
 				n = scanner.nextInt();
 				currentSublist.add(n);
+				System.out.println("press 1 to enter any more clues for this col. Else, press any other number ");
+				int choice = scanner.nextInt();
+				if(choice != 1) {
+					flag = false;
+				}
 			}
 			colClues.add(currentSublist);
 		}
-		
 	}
-		public boolean checkWinner() {
+		
+	public boolean checkWinner() {
 		int rowPointer = 0;
 		for(List<Integer> clue:rowClues) {
 			int i=0;
@@ -128,5 +134,4 @@ public class Board {
 		}
 		return true;
 	}
-	
 }

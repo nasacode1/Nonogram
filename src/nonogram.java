@@ -3,7 +3,7 @@ public class nonogram {
 	public static void main(String args[]) {
 		Scanner scanner= new Scanner(System.in);
 		nonogram game = new nonogram();
-		
+		game.startgame(scanner);
 	}
 	
 	private Board board;
@@ -16,7 +16,7 @@ public class nonogram {
 		int size = scanner.nextInt();
 		board = new Board(size);
 		board.initializeBoard();
-		board.setClues();
+		board.setClues(scanner);
 		
 		while(true) {
 			board.displayBoard();
