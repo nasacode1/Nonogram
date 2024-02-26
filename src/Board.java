@@ -35,14 +35,14 @@ public class Board {
 	}
 	
 	public void setCell(int cellNumber) {
-		int row = (cellNumber - 1)% this.rowSize;
-		int col = (cellNumber - 1)/this.rowSize;
+		int row = (cellNumber - 1)/ this.rowSize;
+		int col = (cellNumber - 1)% this.rowSize;
 		this.grid[row][col] = 'b';
 	}
 	
 	public char getCell(int cellNumber) {
-		int row = (cellNumber - 1)% this.rowSize;
-		int col = (cellNumber - 1)/this.rowSize;
+		int row = (cellNumber - 1)/ this.rowSize;
+		int col = (cellNumber - 1)% this.rowSize;
 		return this.grid[row][col];
 	}
 	
